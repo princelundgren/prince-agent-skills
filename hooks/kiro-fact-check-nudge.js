@@ -7,13 +7,20 @@
 const fs = require("node:fs");
 const path = require("node:path");
 
-const SKIP = "If your last message was only a greeting, a status line, or one fact that a tool's " +
-  "output in this session already shows, reply only \"Nothing to check.\" Otherwise: ";
+const SHORT_ANSWER = "If your last message was only a greeting, a status line, or one fact that a " +
+  "tool's output in this session already shows";
+const EXTRA_STEP_DOES_NOT_APPLY = ", and nothing else this request asks applies to this turn";
+
+function skipLine(extra) {
+  const condition = extra ? SHORT_ANSWER + EXTRA_STEP_DOES_NOT_APPLY : SHORT_ANSWER;
+  return `${condition}, reply only "Nothing to check." Otherwise: `;
+}
 
 try {
   fs.readFileSync(0);
-  const { buildRequest } = require(path.join(__dirname, "fact-check-nudge.js"));
-  process.stdout.write(`${JSON.stringify({ decision: "block", reason: SKIP + buildRequest() })}\n`);
+  const { buildRequest, readExtraParagraph } = require(path.join(__dirname, "fact-check-nudge.js"));
+  const extra = readExtraParagraph();
+  process.stdout.write(`${JSON.stringify({ decision: "block", reason: skipLine(extra) + buildRequest(extra) })}\n`);
 } catch {
   // A failed check must not hold a turn open.
 }
