@@ -4,7 +4,8 @@
 // costs at least one more turn.
 //
 // FACT_CHECK_NUDGE_EXTRA_FILE may name a file whose text is added to the request, for a step of
-// your own, such as keeping a memory store true.
+// your own, such as keeping a memory store true. A leading ~/ is your home folder, since Claude
+// Code's settings.json env expands no variables.
 //
 // It lets the turn end on anything it can't work out.
 "use strict";
@@ -28,9 +29,14 @@ function logPath() {
   return path.join(dir, "fact-check.jsonl");
 }
 
+function expandHome(file) {
+  return file.startsWith("~/") ? path.join(os.homedir(), file.slice(2)) : file;
+}
+
 function readExtraParagraph() {
-  const file = process.env.FACT_CHECK_NUDGE_EXTRA_FILE;
-  if (!file) return "";
+  const setting = process.env.FACT_CHECK_NUDGE_EXTRA_FILE;
+  if (!setting) return "";
+  const file = expandHome(setting);
   try {
     return fs.readFileSync(file, "utf8").trim();
   } catch (error) {

@@ -21,6 +21,7 @@ const KIRO_TOOL_TAGS = {
   WebSearch: "web", WebFetch: "web",
   Skill: null, // Kiro loads skills into every agent and has no skill tool
 };
+const KIRO_ALL_TAGS = [...new Set(Object.values(KIRO_TOOL_TAGS).filter(Boolean))];
 
 // Kiro shows `description` in its agent picker, so each agent gets a short label there.
 const KIRO_LABELS = {
@@ -95,9 +96,9 @@ function kiroAgent(agent) {
   const file = `agents/${agent}.md`;
   const { frontmatter, body } = splitFrontmatter(readSource(file), file);
   const toolList = readScalar(frontmatter, "tools");
-  if (!toolList) throw new Error(`${file}: no tools: line, and Kiro gives an agent without one no tools`);
   if (!KIRO_LABELS[agent]) throw new Error(`${file}: no Kiro label; add one to KIRO_LABELS`);
-  const tags = kiroTags(toolList, file).map(quoted).join(", ");
+  // An agent with no tools: line inherits every tool, so its Kiro form gets every tag.
+  const tags = (toolList ? kiroTags(toolList, file) : KIRO_ALL_TAGS).map(quoted).join(", ");
   return `---\nname: ${agent}\ndescription: ${quoted(KIRO_LABELS[agent])}\ntools: [${tags}]\n---\n${body}`;
 }
 

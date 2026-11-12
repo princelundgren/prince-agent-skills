@@ -158,6 +158,15 @@ test("the extra file's paragraph sits between the check and the reply's shape", 
   assert.match(request, /\(docs, search, a command\)\. Then update the notes this turn made false\. Your reply becomes/);
 });
 
+test("an extra file named from ~/ is read from the home folder", (t) => {
+  const { stop } = setup(t);
+  const home = tempDir(t);
+  fs.writeFileSync(path.join(home, "extra.md"), "Then update the notes this turn made false.\n");
+  const request = JSON.parse(stop(stopPayload(LONG_MESSAGE), { HOME: home, USERPROFILE: home, FACT_CHECK_NUDGE_EXTRA_FILE: "~/extra.md" }).stdout)
+    .hookSpecificOutput.additionalContext;
+  assert.match(request, /Then update the notes this turn made false\./);
+});
+
 test("an extra file it can't read is named on stderr and the request still goes out", (t) => {
   const { stop, data } = setup(t);
   const missing = path.join(data, "missing.md");

@@ -1,7 +1,7 @@
 ---
 name: solution-architect
 description: Use after requirements exist and before implementation, or when a design.md or an architecture review is asked for, for a technical design with its key decisions and trade-offs.
-tools: Read, Grep, Glob, Bash, Write, Edit, WebSearch, WebFetch, Skill
+# No tools: line, so it inherits the session's tools, docs MCP servers included.
 model: opus
 skills:
   # Preloaded so its full text is in context from the first turn.

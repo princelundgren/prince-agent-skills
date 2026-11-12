@@ -94,7 +94,7 @@ them to your agent's always-on instructions.
 
 `fact-check-nudge` appends the text of the file named by `FACT_CHECK_NUDGE_EXTRA_FILE`, if set, to
 its request: a step of your own, such as keeping a notes store true. In Claude Code, set it in the
-`env` block of `settings.json`.
+`env` block of `settings.json`; a path starting `~/` is read from your home folder.
 
 ## Known limits
 
