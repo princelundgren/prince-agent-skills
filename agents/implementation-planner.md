@@ -5,7 +5,7 @@ tools: Read, Grep, Glob, Bash, Write, Edit, WebSearch, WebFetch, Skill
 model: sonnet
 skills:
   # Preloaded so its full text is in context from the first turn.
-  - prince-agent-skills:find-docs
+  - prince-skills:find-docs
 ---
 
 ## Role

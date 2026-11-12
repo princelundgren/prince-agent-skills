@@ -1,7 +1,7 @@
 {
-  "name": "prince-agent-skills",
+  "name": "prince-skills",
   "private": true,
-  "description": "Tests and generator for the prince-agent-skills plugin; the plugin itself needs no install",
+  "description": "Tests and generator for the prince-skills plugin; the plugin itself needs no install",
   "license": "MIT",
   "engines": {
     "node": ">=22"
