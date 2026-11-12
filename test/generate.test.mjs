@@ -28,6 +28,15 @@ test("every rule is a Kiro steering file that is always included", () => {
   }
 });
 
+test("a Kiro agent made from one with no tools: line gets every tool tag, since Kiro gives none by default", () => {
+  const inheriting = fs.readdirSync(path.join(ROOT, "agents"))
+    .filter((file) => file.endsWith(".md") && !/^tools:/m.test(read("agents", file)));
+  assert.ok(inheriting.length > 0, "no agent without a tools: line to check");
+  for (const file of inheriting) {
+    assert.match(read("kiro", "agents", file), /^tools: \["read", "write", "shell", "web"\]$/m, file);
+  }
+});
+
 test("Claude Code injects every rule at session start and into every subagent", () => {
   const { hooks } = JSON.parse(read("hooks", "hooks.json"));
   const injected = (event) => hooks[event][0].hooks

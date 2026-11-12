@@ -1,7 +1,7 @@
 ---
 name: solution-architect
 description: "Turns requirements into a technical design — architecture, data model, APIs."
-tools: ["read", "shell", "write", "web"]
+tools: ["read", "write", "shell", "web"]
 ---
 
 ## Role
