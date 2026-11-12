@@ -41,7 +41,7 @@ test("qwen: empty or non-JSON input exits 0 with nothing printed", () => {
 test("Claude Code and Kiro both run it on UserPromptSubmit", () => {
   const plugin = JSON.parse(fs.readFileSync(path.join(ROOT, "hooks", "hooks.json"), "utf8"));
   assert.match(plugin.hooks.UserPromptSubmit[0].hooks[0].command, /hooks\/fact-check-first\.js/);
-  const kiro = JSON.parse(fs.readFileSync(path.join(ROOT, "kiro", "hooks", "prince-agent-skills.json"), "utf8"));
+  const kiro = JSON.parse(fs.readFileSync(path.join(ROOT, "kiro", "hooks", "prince-skills.json"), "utf8"));
   const commands = kiro.hooks.filter((hook) => hook.trigger === "UserPromptSubmit").map((hook) => hook.action.command);
   assert.ok(commands.some((command) => command.includes("hooks/fact-check-first.js")));
 });

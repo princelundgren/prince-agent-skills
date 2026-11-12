@@ -5,7 +5,7 @@ description: Use after requirements exist and before implementation, or when a d
 model: opus
 skills:
   # Preloaded so its full text is in context from the first turn.
-  - prince-agent-skills:find-docs
+  - prince-skills:find-docs
 ---
 
 ## Role

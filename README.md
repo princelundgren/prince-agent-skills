@@ -1,6 +1,6 @@
-# prince-agent-skills
+# prince-skills
 
-[![CI](https://github.com/princelundgren/prince-agent-skills/actions/workflows/ci.yml/badge.svg)](https://github.com/princelundgren/prince-agent-skills/actions/workflows/ci.yml)
+[![CI](https://github.com/princelundgren/prince-skills/actions/workflows/ci.yml/badge.svg)](https://github.com/princelundgren/prince-skills/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 Rules, skills, agents and hooks that make coding agents check facts, own their mistakes and
@@ -46,18 +46,18 @@ past repeated failures, and treat a decided trade-off as a bug.
 ### Claude Code
 
 ```text
-/plugin marketplace add princelundgren/prince-agent-skills
-/plugin install prince-agent-skills@prince-agent-skills
+/plugin marketplace add princelundgren/prince-skills
+/plugin install prince-skills@prince-skills
 ```
 
 Updates are off by default for a marketplace outside Anthropic's own. Turn them on in `/plugin` →
-**Marketplaces** → `prince-agent-skills` → **Enable auto-update**, or declare the marketplace with
+**Marketplaces** → `prince-skills` → **Enable auto-update**, or declare the marketplace with
 `autoUpdate` in a settings file ([plugin docs](https://code.claude.com/docs/en/plugins/loading)).
 
 ### Qwen Code
 
 ```bash
-qwen extensions install princelundgren/prince-agent-skills:prince-agent-skills
+qwen extensions install princelundgren/prince-skills:prince-skills
 qwen extensions update --all   # to update
 ```
 
@@ -70,9 +70,9 @@ The skills install with [`skills`](https://github.com/vercel-labs/skills); the r
 hooks come from a clone, whose path the hooks name:
 
 ```bash
-npx skills add princelundgren/prince-agent-skills -g -a kiro-cli
-git clone https://github.com/princelundgren/prince-agent-skills.git ~/.local/share/prince-agent-skills
-cd ~/.local/share/prince-agent-skills
+npx skills add princelundgren/prince-skills -g -a kiro-cli
+git clone https://github.com/princelundgren/prince-skills.git ~/.local/share/prince-skills
+cd ~/.local/share/prince-skills
 mkdir -p ~/.kiro/steering ~/.kiro/agents ~/.kiro/hooks
 cp kiro/steering/*.md ~/.kiro/steering/
 cp kiro/agents/*.md ~/.kiro/agents/
@@ -84,7 +84,7 @@ To update: `npx skills update -g`, then `git pull` in the clone and the three `c
 ### Any other agent
 
 ```bash
-npx skills add princelundgren/prince-agent-skills
+npx skills add princelundgren/prince-skills
 ```
 
 This installs the skills only. The rules are plain Markdown in [`guidelines/`](guidelines/): add
@@ -116,8 +116,8 @@ Not mine, so not published here:
 
 ## Help and feedback
 
-Questions and ideas go in [Discussions](https://github.com/princelundgren/prince-agent-skills/discussions),
-bugs in [Issues](https://github.com/princelundgren/prince-agent-skills/issues). Feedback on whether a
+Questions and ideas go in [Discussions](https://github.com/princelundgren/prince-skills/discussions),
+bugs in [Issues](https://github.com/princelundgren/prince-skills/issues). Feedback on whether a
 rule changes what your agent does is the most useful kind.
 
 ## Contributing

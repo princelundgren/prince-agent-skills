@@ -50,7 +50,7 @@ test("Claude Code injects every rule at session start and into every subagent", 
 
 test("Kiro's hooks run the scripts from the folder the README clones into", () => {
   const clone = /git clone \S+ (\S+)/.exec(read("README.md"))[1].replace(/^~/, "$HOME");
-  const { hooks } = JSON.parse(read("kiro", "hooks", "prince-agent-skills.json"));
+  const { hooks } = JSON.parse(read("kiro", "hooks", "prince-skills.json"));
   for (const hook of hooks) {
     const script = /hooks\/([a-z-]+\.js)"$/.exec(hook.action.command)[1];
     assert.equal(hook.action.command, `node "${clone}/hooks/${script}"`);

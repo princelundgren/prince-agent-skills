@@ -11,7 +11,7 @@ import { fileURLToPath } from "node:url";
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const PLUGIN_HOOKS = '${CLAUDE_PLUGIN_ROOT}/hooks';
 // Where the README's Kiro steps clone this repo; Kiro's hook files run the scripts from there.
-const KIRO_CLONE_HOOKS = "$HOME/.local/share/prince-agent-skills/hooks";
+const KIRO_CLONE_HOOKS = "$HOME/.local/share/prince-skills/hooks";
 
 // Kiro's `tools:` takes category tags, not tool names, and an absent field means no tools at all.
 const KIRO_TOOL_TAGS = {
@@ -114,8 +114,8 @@ function kiroHooks() {
   return {
     version: "v1",
     hooks: [
-      hook("prince-agent-skills-fact-check", "Stop", "kiro-fact-check-nudge.js"),
-      hook("prince-agent-skills-fact-check-first", "UserPromptSubmit", "fact-check-first.js"),
+      hook("prince-skills-fact-check", "Stop", "kiro-fact-check-nudge.js"),
+      hook("prince-skills-fact-check-first", "UserPromptSubmit", "fact-check-first.js"),
     ],
   };
 }
@@ -127,7 +127,7 @@ function expectedFiles() {
   const files = new Map([
     ["hooks/hooks.json", json(pluginHooks(rules))],
     ["QWEN.md", qwenContext(rules)],
-    ["kiro/hooks/prince-agent-skills.json", json(kiroHooks())],
+    ["kiro/hooks/prince-skills.json", json(kiroHooks())],
   ]);
   for (const rule of rules) files.set(`kiro/steering/${rule}.md`, kiroSteering(rule));
   for (const agent of agents) files.set(`kiro/agents/${agent}.md`, kiroAgent(agent));

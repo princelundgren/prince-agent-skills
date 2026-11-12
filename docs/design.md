@@ -57,7 +57,7 @@ a local folder, loads it only on keywords in a prompt, and a power holds no hook
 A plugin's agents ignore `hooks`, `mcpServers` and `permissionMode`, so none of them declares an
 MCP server; they use the session's. `solution-architect` has no `tools:` line, so it inherits the
 session's tools, docs MCP servers included, which a design checked against the docs needs. Each
-preloads `find-docs` by its plugin name, `prince-agent-skills:find-docs`, because a subagent starts
+preloads `find-docs` by its plugin name, `prince-skills:find-docs`, because a subagent starts
 without its parent's skills. Kiro's `tools:` takes category tags, and an agent with none gets no
 tools, so the generator maps each tool, fails on one it doesn't know, and gives an agent with no
 `tools:` line every tag.

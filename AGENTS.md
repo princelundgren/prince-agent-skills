@@ -1,4 +1,4 @@
-# prince-agent-skills — instructions for agents
+# prince-skills — instructions for agents
 
 This repository is public: everything in it, its commits and its pull requests are public. Write
 nothing about the maintainer's own machines, accounts, private repositories or employer.

@@ -1,5 +1,5 @@
 {
-  "name": "prince-agent-skills",
+  "name": "prince-skills",
   "description": "Rules, skills, agents and hooks that make coding agents check facts, own mistakes and pressure-test plans",
   "owner": {
     "name": "Prince Lundgren",
@@ -7,7 +7,7 @@
   },
   "plugins": [
     {
-      "name": "prince-agent-skills",
+      "name": "prince-skills",
       "description": "Rules, skills, agents and hooks that make coding agents check facts, own mistakes and pressure-test plans",
       "source": "./",
       "author": {

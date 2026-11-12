@@ -19,7 +19,7 @@ export function runHook(script, input, { env = {}, args = [], cwd = ROOT } = {})
 
 /** A fresh temporary directory, removed when the test ends. */
 export function tempDir(t) {
-  const dir = fs.realpathSync(fs.mkdtempSync(path.join(os.tmpdir(), "prince-agent-skills-")));
+  const dir = fs.realpathSync(fs.mkdtempSync(path.join(os.tmpdir(), "prince-skills-")));
   t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
   return dir;
 }

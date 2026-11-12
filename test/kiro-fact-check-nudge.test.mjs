@@ -51,7 +51,7 @@ test("loading the Claude Code hook as a module doesn't run its Stop handler", ()
 });
 
 test("Kiro's hooks run it on Stop", () => {
-  const kiro = JSON.parse(fs.readFileSync(path.join(ROOT, "kiro", "hooks", "prince-agent-skills.json"), "utf8"));
+  const kiro = JSON.parse(fs.readFileSync(path.join(ROOT, "kiro", "hooks", "prince-skills.json"), "utf8"));
   const commands = kiro.hooks.filter((hook) => hook.trigger === "Stop").map((hook) => hook.action.command);
   assert.ok(commands.some((command) => command.includes("hooks/kiro-fact-check-nudge.js")));
 });
