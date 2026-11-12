@@ -6,8 +6,12 @@ nothing about the maintainer's own machines, accounts, private repositories or e
 - **Sources and generated files.** Edit `guidelines/`, `skills/`, `agents/` and `hooks/*.js`; then
   `npm run generate`, which writes `hooks/hooks.json`, `QWEN.md` and `kiro/`. Never edit those by
   hand: CI fails when they differ from what the generator writes.
-- **Test:** `npm test`. Validate the plugin: `claude plugin validate .`; its warnings for the
-  missing `version` (`docs/design.md`) and icon are expected.
+- **Test:** one file with `node --test test/<name>.test.mjs`, all of them with `npm test`. A bare
+  `node --test test/` fails.
+- **Validate the plugin:** `claude plugin validate .`. Its warnings for the missing `version`
+  (`docs/design.md`) and icon are expected.
+- **Hooks are CommonJS** (`require`), run by harnesses as plain `node <script>`. A `"type":
+  "module"` in `package.json` breaks every hook; the generator and tests are `.mjs` instead.
 - **Rules are named `guidelines/`** because Qwen Code reads an extension's `rules/` folder
   differently (`docs/design.md`).
 - **A file that names another rule or skill** names one published here, or a tool the user may not
