@@ -11,13 +11,23 @@ import { ROOT, runHook, tempDir } from "./helpers.mjs";
 const PAYLOAD = JSON.stringify({ session_id: "sess_670caf5b-92b2-4139-a7cb-413e7db4d2ed", hook_event_name: "Stop", cwd: "/tmp/probe" });
 const { buildRequest } = createRequire(import.meta.url)(path.join(ROOT, "hooks", "fact-check-nudge.js"));
 
+const SHORT_ANSWER = "If your last message was only a greeting, a status line, or one fact that a tool's " +
+  "output in this session already shows";
+
 test("a Kiro stop continues the turn with Claude Code's request and a way to skip a short answer", () => {
   const result = runHook("kiro-fact-check-nudge.js", PAYLOAD);
   assert.equal(result.status, 0);
   const output = JSON.parse(result.stdout);
   assert.equal(output.decision, "block");
-  assert.ok(output.reason.startsWith("If your last message was only"));
-  assert.ok(output.reason.endsWith(buildRequest()));
+  assert.equal(output.reason, `${SHORT_ANSWER}, reply only "Nothing to check." Otherwise: ${buildRequest("")}`);
+});
+
+test("with an extra file, a short answer is skipped only if the extra step doesn't apply either", (t) => {
+  const extra = path.join(tempDir(t), "extra.md");
+  fs.writeFileSync(extra, "Then update the notes this turn made false.\n");
+  const output = JSON.parse(runHook("kiro-fact-check-nudge.js", PAYLOAD, { env: { FACT_CHECK_NUDGE_EXTRA_FILE: extra } }).stdout);
+  const skip = `${SHORT_ANSWER}, and nothing else this request asks applies to this turn, reply only "Nothing to check." Otherwise: `;
+  assert.equal(output.reason, skip + buildRequest("Then update the notes this turn made false."));
 });
 
 test("a second stop in the same session is checked too", () => {

@@ -48,7 +48,7 @@ a local folder, loads it only on keywords in a prompt, and a power holds no hook
   can see how often a check corrected anything. It logs a message's length, never its text.
 - **`fact-check-nudge` is off under Qwen Code**, where it is untested; each check costs a turn.
 - **Kiro's `Stop` payload holds no message**, so `kiro-fact-check-nudge` asks every turn and lets
-  the session skip a turn with nothing to check.
+  the session skip a turn with nothing to check, and nothing for the extra file's step to do.
 - **Your own step goes in a file**, named by `FACT_CHECK_NUDGE_EXTRA_FILE`, not in an edit to the
   hook.
 

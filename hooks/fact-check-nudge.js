@@ -33,6 +33,7 @@ function expandHome(file) {
   return file.startsWith("~/") ? path.join(os.homedir(), file.slice(2)) : file;
 }
 
+/** The trimmed text of the file FACT_CHECK_NUDGE_EXTRA_FILE names, or "" if unset or unreadable. */
 function readExtraParagraph() {
   const setting = process.env.FACT_CHECK_NUDGE_EXTRA_FILE;
   if (!setting) return "";
@@ -45,9 +46,9 @@ function readExtraParagraph() {
   }
 }
 
-/** The end-of-turn request a session receives, with the extra paragraph when one is configured. */
-function buildRequest() {
-  return [CHECK, readExtraParagraph(), REPLY_SHAPE].filter(Boolean).join(" ");
+/** The end-of-turn request a session receives, with `extra` between the check and the reply's shape. */
+function buildRequest(extra = readExtraParagraph()) {
+  return [CHECK, extra, REPLY_SHAPE].filter(Boolean).join(" ");
 }
 
 function isWaitingOnBackgroundWork(payload) {
@@ -102,7 +103,7 @@ function handleStop(payload) {
   process.stdout.write(`${JSON.stringify(output)}\n`);
 }
 
-module.exports = { buildRequest };
+module.exports = { buildRequest, readExtraParagraph };
 
 if (require.main === module) {
   try {
