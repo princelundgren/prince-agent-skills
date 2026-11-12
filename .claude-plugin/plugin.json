@@ -1,0 +1,12 @@
+{
+  "name": "prince-agent-skills",
+  "description": "Rules, skills, agents and hooks that make coding agents check facts, own mistakes and pressure-test plans",
+  "author": {
+    "name": "Prince Lundgren",
+    "url": "https://github.com/princelundgren"
+  },
+  "homepage": "https://github.com/princelundgren/prince-agent-skills",
+  "repository": "https://github.com/princelundgren/prince-agent-skills",
+  "license": "MIT",
+  "keywords": ["rules", "skills", "fact-checking", "requirements", "design", "planning", "hooks"]
+}

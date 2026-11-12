@@ -1,0 +1,13 @@
+{
+  "name": "prince-agent-skills",
+  "private": true,
+  "description": "Tests and generator for the prince-agent-skills plugin; the plugin itself needs no install",
+  "license": "MIT",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "generate": "node scripts/generate.mjs",
+    "test": "node --test \"test/*.test.mjs\""
+  }
+}

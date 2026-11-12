@@ -1,0 +1,11 @@
+{
+  "session_id": "d19a0da4-4998-4750-a133-dcde92cefa85",
+  "transcript_path": "/SANDBOX/home/.qwen/projects/-SANDBOX-work/chats/d19a0da4-4998-4750-a133-dcde92cefa85.jsonl",
+  "cwd": "/SANDBOX/work",
+  "hook_event_name": "UserPromptSubmit",
+  "timestamp": "2026-10-15T07:38:32.636Z",
+  "permission_mode": "yolo",
+  "prompt_id": "d19a0da4-4998-4750-a133-dcde92cefa85########0",
+  "prompt": "Run the scripted steps.",
+  "submitted_prompt": "Run the scripted steps."
+}

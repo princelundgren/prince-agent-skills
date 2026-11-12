@@ -1,0 +1,25 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "prince-agent-skills-fact-check",
+      "trigger": "Stop",
+      "action": {
+        "type": "command",
+        "command": "node \"$HOME/.local/share/prince-agent-skills/hooks/kiro-fact-check-nudge.js\""
+      },
+      "timeout": 10,
+      "enabled": true
+    },
+    {
+      "name": "prince-agent-skills-fact-check-first",
+      "trigger": "UserPromptSubmit",
+      "action": {
+        "type": "command",
+        "command": "node \"$HOME/.local/share/prince-agent-skills/hooks/fact-check-first.js\""
+      },
+      "timeout": 10,
+      "enabled": true
+    }
+  ]
+}
