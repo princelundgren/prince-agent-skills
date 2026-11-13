@@ -1,0 +1,50 @@
+name: Rule or skill feedback
+description: What a rule, skill, agent or hook made your agent do, whether it helped or not.
+labels: ["feedback"]
+body:
+  - type: input
+    id: file
+    attributes:
+      label: Which rule, skill, agent or hook
+      description: Its name, such as `verify-before-asserting` or `pressure-test`.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: outcome
+    attributes:
+      label: What it did
+      options:
+        - It changed what the agent did, for the better
+        - It fired, but the agent ignored it
+        - It didn't fire when it should have
+        - It fired when it shouldn't have
+        - It made the agent worse
+    validations:
+      required: true
+
+  - type: dropdown
+    id: harness
+    attributes:
+      label: Harness
+      options:
+        - Claude Code
+        - Qwen Code
+        - Kiro CLI
+        - Other (say which below)
+    validations:
+      required: true
+
+  - type: input
+    id: harness-version
+    attributes:
+      label: Harness version and model
+      description: The output of `claude --version`, `qwen --version` or `kiro-cli --version`, and the model the session ran on.
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What you asked, and what the agent did
+      description: The prompt, and an excerpt of the agent's reply or actions. Leave out anything private.
+    validations:
+      required: true

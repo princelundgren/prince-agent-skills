@@ -118,7 +118,9 @@ Not mine, so not published here:
 
 Questions and ideas go in [Discussions](https://github.com/princelundgren/prince-skills/discussions),
 bugs in [Issues](https://github.com/princelundgren/prince-skills/issues). Feedback on whether a
-rule changes what your agent does is the most useful kind.
+rule changes what your agent does is the most useful kind: the
+[Rule or skill feedback](https://github.com/princelundgren/prince-skills/issues/new?template=feedback.yml)
+form asks for what it needs. A security problem goes through [SECURITY.md](SECURITY.md) instead.
 
 ## Contributing
 
