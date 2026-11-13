@@ -41,6 +41,19 @@ past repeated failures, and treat a decided trade-off as a bug.
 - `fact-check-nudge`: after a long final message, one request to fact-check it with the agent's own tools
 - `repair-core-bare`: undoes the `core.bare = true` that Claude Code's worktree tools can leave behind ([anthropics/claude-code#58345](https://github.com/anthropics/claude-code/issues/58345))
 
+## What it looks like
+
+A real turn in Claude Code. Asked what this repository still lacked, the agent listed `SECURITY.md`
+and added:
+
+> It's also the main thing missing from GitHub's community score (71%).
+
+`fact-check-nudge` then asked it to check each claim before ending the turn. It queried GitHub's
+community-profile API and opened its next message with:
+
+> One correction. SECURITY.md is not what's holding the community score at 71%. The
+> community-profile API's file list doesn't count a security policy at all.
+
 ## Install
 
 ### Claude Code
@@ -118,7 +131,9 @@ Not mine, so not published here:
 
 Questions and ideas go in [Discussions](https://github.com/princelundgren/prince-skills/discussions),
 bugs in [Issues](https://github.com/princelundgren/prince-skills/issues). Feedback on whether a
-rule changes what your agent does is the most useful kind.
+rule changes what your agent does is the most useful kind: the
+[Rule or skill feedback](https://github.com/princelundgren/prince-skills/issues/new?template=feedback.yml)
+form asks for what it needs. A security problem goes through [SECURITY.md](SECURITY.md) instead.
 
 ## Contributing
 

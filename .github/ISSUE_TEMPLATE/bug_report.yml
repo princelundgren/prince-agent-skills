@@ -1,5 +1,5 @@
 name: Bug report
-description: A hook fails, an install step doesn't work, or a rule or skill makes an agent do the wrong thing.
+description: A hook fails or an install step doesn't work. For what a rule or skill made an agent do, use Rule or skill feedback.
 labels: ["bug"]
 body:
   - type: dropdown
@@ -26,7 +26,6 @@ body:
     id: what-happened
     attributes:
       label: What happened, and what you expected
-      description: For a rule or skill, what the agent did and what the text should have made it do.
     validations:
       required: true
 
