@@ -20,7 +20,11 @@ A Claude Code plugin ships commands, agents, skills, hooks and MCP servers, but 
 - **Qwen Code:** the rules are concatenated into `QWEN.md`, which Qwen loads as an extension's
   context file. `inject-rule.js` prints nothing when Qwen's `QWEN_PROJECT_DIR` is set, so a session
   doesn't get each rule twice.
-- **Kiro CLI:** steering files with `inclusion: always`.
+- **Kiro CLI:** steering files with `inclusion: always`, but for the rules tied to an activity,
+  which load when a request matches their description (`inclusion: auto`): a workflow tool is off
+  by default in Kiro, and a gotcha arises only after a fix. Kiro CLI's V2 harness loads only
+  `always` files, so these two rules don't load there; the V3 harness, the default from Kiro CLI
+  3.0, loads them.
 
 The sources live in `guidelines/`, not `rules/`: Qwen Code 0.27.1 reads an extension's `rules/` as
 path-scoped rules, and skips and warns about each one with no `paths:`.
@@ -85,6 +89,9 @@ the check.
 - **No cap on the number of questions.** A question that can't change the outcome isn't asked;
   any other one is.
 - **A change that fits in one sentence needs no plan**, Claude Code's own test.
+- **Questions that aren't about code get their own rule**, `pressure-test-before-answering`,
+  rather than a wider coding rule: plan mode and EARS hold for code only. Its Tier 1 still looks
+  the facts up, since "just answer" read as leave to answer from memory.
 
 What it rests on:
 

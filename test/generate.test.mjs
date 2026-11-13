@@ -18,13 +18,22 @@ test("QWEN.md holds every rule in full, since it is the only way the rules reach
   for (const file of guidelines) assert.ok(context.includes(read("guidelines", file).trimEnd()), file);
 });
 
-test("every rule is a Kiro steering file that is always included", () => {
+const kiroOnDemand = ["recommend-multiagent-workflow.md", "surface-shared-gotchas.md"];
+
+test("every rule is a Kiro steering file, always included but for the two tied to an activity", () => {
   const steering = fs.readdirSync(path.join(ROOT, "kiro", "steering")).sort();
   assert.deepEqual(steering, guidelines);
   for (const file of steering) {
     const text = read("kiro", "steering", file);
-    assert.ok(text.startsWith("---\ninclusion: always\n---\n"), file);
+    if (!kiroOnDemand.includes(file)) assert.ok(text.startsWith("---\ninclusion: always\n---\n"), file);
     assert.ok(text.endsWith(read("guidelines", file)), file);
+  }
+});
+
+test("Kiro loads the activity rules when a request matches their description, which Kiro requires with a name", () => {
+  for (const file of kiroOnDemand) {
+    const name = file.slice(0, -3);
+    assert.match(read("kiro", "steering", file), new RegExp(`^---\\ninclusion: auto\\nname: ${name}\\ndescription: "Use [^"\\n]+"\\n---\\n`), file);
   }
 });
 

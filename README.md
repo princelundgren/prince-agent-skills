@@ -12,7 +12,8 @@ past repeated failures, and treat a decided trade-off as a bug.
 
 ## What's in it
 
-**Rules**, always on: in every session, and in Claude Code in every subagent too.
+**Rules**, always on: in every session, and in Claude Code in every subagent too. Kiro loads two of
+them only when a request fits them (Known limits).
 
 | Rule | What it makes the agent do |
 |---|---|
@@ -22,12 +23,22 @@ past repeated failures, and treat a decided trade-off as a bug.
 | [`check-for-a-prior-decision`](guidelines/check-for-a-prior-decision.md) | Look for a recorded decision before calling something a defect |
 | [`pressure-test-before-building`](guidelines/pressure-test-before-building.md) | Ask questions in proportion to the stakes before building |
 | [`keep-working-after-a-mid-task-prompt`](guidelines/keep-working-after-a-mid-task-prompt.md) | Treat a message sent mid-task as an addition, not a replacement |
+| [`pressure-test-before-answering`](guidelines/pressure-test-before-answering.md) | The same calibration for questions that aren't about code |
+| [`adopt-before-building`](guidelines/adopt-before-building.md) | Propose an existing tool or library before a custom build |
+| [`interactive-questions`](guidelines/interactive-questions.md) | Ask a choice of 2-4 options as a multiple-choice question |
+| [`close-the-turn-clearly`](guidelines/close-the-turn-clearly.md) | End each turn with what changed, what needs you and what's next |
+| [`clean-code`](guidelines/clean-code.md) | Write names, functions, comments and tests a stranger can safely change |
+| [`surface-shared-gotchas`](guidelines/surface-shared-gotchas.md) | Write a shared tool's gotcha where every user of the tool will look |
+| [`give-full-paths`](guidelines/give-full-paths.md) | Give absolute paths for anything the user opens or runs |
+| [`python-script-dependencies`](guidelines/python-script-dependencies.md) | Run a one-off script's packages with `uv run --with`, never assume them |
+| [`recommend-multiagent-workflow`](guidelines/recommend-multiagent-workflow.md) | Offer the `Workflow` tool, where the session has it, when a task fits it |
 
 **Skills**, loaded when a task needs them:
 
 - [`pressure-test`](skills/pressure-test/SKILL.md): an adversarial pass over a plan, design or brief that surfaces hidden assumptions
 - [`comparing-products`](skills/comparing-products/SKILL.md): compares products, tools or services on verified facts and recommends one
 - [`find-docs`](skills/find-docs/SKILL.md): routes "how does this library work" questions to current documentation instead of memory
+- [`verify-before-done`](skills/verify-before-done/SKILL.md): what counts as proof before saying a fix, a work item or a deploy is done
 
 **Agents** for spec-driven work, each preloading `find-docs` in Claude Code:
 
@@ -117,6 +128,9 @@ its request: a step of your own, such as keeping a notes store true. In Claude C
 - **`fact-check-nudge` costs a turn** each time it asks, and its reply repeats the answer, so an
   interactive session shows it twice. Kiro asks after every turn, so it shows every answer that
   isn't skipped twice. It doesn't run under Qwen Code.
+- **The rules take about 26,000 characters of context** in every session, and in Claude Code in
+  every subagent too. Kiro loads `recommend-multiagent-workflow` and `surface-shared-gotchas` only
+  when a request fits them, and not at all under Kiro CLI's V2 harness.
 - **Hooks need `node`** on `PATH`.
 
 ## Works well with
