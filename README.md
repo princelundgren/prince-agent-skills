@@ -37,6 +37,7 @@ past repeated failures, and treat a decided trade-off as a bug.
 - [`pressure-test`](skills/pressure-test/SKILL.md): an adversarial pass over a plan, design or brief that surfaces hidden assumptions
 - [`comparing-products`](skills/comparing-products/SKILL.md): compares products, tools or services on verified facts and recommends one
 - [`find-docs`](skills/find-docs/SKILL.md): routes "how does this library work" questions to current documentation instead of memory
+- [`verify-before-done`](skills/verify-before-done/SKILL.md): what counts as proof before saying a fix, a work item or a deploy is done
 
 **Agents** for spec-driven work, each preloading `find-docs` in Claude Code:
 
