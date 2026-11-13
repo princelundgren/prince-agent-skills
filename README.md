@@ -12,7 +12,8 @@ past repeated failures, and treat a decided trade-off as a bug.
 
 ## What's in it
 
-**Rules**, always on: in every session, and in Claude Code in every subagent too.
+**Rules**, always on: in every session, and in Claude Code in every subagent too. Kiro loads two of
+them only when a request fits them (Known limits).
 
 | Rule | What it makes the agent do |
 |---|---|
@@ -128,7 +129,8 @@ its request: a step of your own, such as keeping a notes store true. In Claude C
   interactive session shows it twice. Kiro asks after every turn, so it shows every answer that
   isn't skipped twice. It doesn't run under Qwen Code.
 - **The rules take about 26,000 characters of context** in every session, and in Claude Code in
-  every subagent too.
+  every subagent too. Kiro loads `recommend-multiagent-workflow` and `surface-shared-gotchas` only
+  when a request fits them, and not at all under Kiro CLI's V2 harness.
 - **Hooks need `node`** on `PATH`.
 
 ## Works well with

@@ -17,7 +17,7 @@ through [SECURITY.md](SECURITY.md), never a public issue.
    ```
 
    Tests need Node 22 or later and git, and nothing to install.
-3. **Keep a rule short and harness-neutral.** It loads in every session and every subagent, so each
+3. **Keep a rule short and harness-neutral.** Most rules load in every session and every subagent, so each
    line costs everyone. A rule must stay under 9,000 characters; a test checks it.
 4. **Test a hook's behaviour, not its code.** Each hook has a test file in `test/` that runs it on
    payloads shaped like the harness's documented or captured input.

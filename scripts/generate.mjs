@@ -30,6 +30,13 @@ const KIRO_LABELS = {
   "implementation-planner": "Turns an approved design into an ordered, testable task plan.",
 };
 
+// Kiro includes these rules only when a request matches the description; every other rule always.
+// A description names the activity, since that is what a request mentions.
+const KIRO_ON_DEMAND = {
+  "recommend-multiagent-workflow": "Use when a task could be split across parallel agents: broad audits, migrations, sweeps.",
+  "surface-shared-gotchas": "Use after fixing a bug or gotcha in a shared tool, library, or service, or before re-deriving what may already be written up.",
+};
+
 function listNames(dir, extension) {
   return fs.readdirSync(path.join(ROOT, dir))
     .filter((file) => file.endsWith(extension))
@@ -65,7 +72,11 @@ function qwenContext(rules) {
 }
 
 function kiroSteering(rule) {
-  return `---\ninclusion: always\n---\n\n${readSource("guidelines", `${rule}.md`)}`;
+  const description = KIRO_ON_DEMAND[rule];
+  const frontmatter = description
+    ? `inclusion: auto\nname: ${rule}\ndescription: ${quoted(description)}`
+    : "inclusion: always";
+  return `---\n${frontmatter}\n---\n\n${readSource("guidelines", `${rule}.md`)}`;
 }
 
 function splitFrontmatter(text, file) {
@@ -123,6 +134,9 @@ function kiroHooks() {
 function expectedFiles() {
   const rules = listNames("guidelines", ".md");
   const agents = listNames("agents", ".md");
+  for (const rule of Object.keys(KIRO_ON_DEMAND)) {
+    if (!rules.includes(rule)) throw new Error(`KIRO_ON_DEMAND names ${rule}, which is not in guidelines/`);
+  }
   const json = (value) => `${JSON.stringify(value, null, 2)}\n`;
   const files = new Map([
     ["hooks/hooks.json", json(pluginHooks(rules))],

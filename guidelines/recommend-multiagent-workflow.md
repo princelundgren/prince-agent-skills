@@ -1,8 +1,9 @@
 # Recommend multi-agent workflow orchestration — don't default to silence
 
-When a task clearly fits the `Workflow` tool's own bar and no opt-in has fired, recommend the
-workflow and ask rather than quietly proceeding solo. Only where the `Workflow` tool is in your
-tool list (Qwen Code: with `tools.workflowsEnabled`); elsewhere this rule doesn't apply.
+When a task clearly fits a workflow tool's own bar and no opt-in has fired, recommend the
+workflow and ask rather than quietly proceeding solo. Only where such a tool is in your tool list:
+`Workflow` in Claude Code, and in Qwen Code with `tools.workflowsEnabled`; `run_workflow` in Kiro
+CLI with `chat.enableWorkflows`. Elsewhere this rule doesn't apply.
 
 1. **The fit**
    - Comprehensive parallel decomposition, confidence through independent or adversarial

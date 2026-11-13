@@ -1,5 +1,7 @@
 ---
-inclusion: always
+inclusion: auto
+name: surface-shared-gotchas
+description: "Use after fixing a bug or gotcha in a shared tool, library, or service, or before re-deriving what may already be written up."
 ---
 
 # Surface shared-tool gotchas centrally — don't let a fix stay trapped in one file's comment
