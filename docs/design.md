@@ -113,3 +113,7 @@ Skills I use but didn't write are linked from the README, not copied, whatever t
 
 GitHub-hosted runners only, and no `pull_request_target` or `workflow_run`, so a fork's pull
 request runs with a read-only token and no secrets.
+
+A pull request a person opens from this repository gets a Claude review once it is out of draft
+(`claude-code-review.yml`), which comments and never approves; the maintainer reads it and merges.
+A fork's pull request gets none, since the review needs a secret, and neither does a bot's.
