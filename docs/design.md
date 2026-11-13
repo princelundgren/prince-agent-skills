@@ -85,6 +85,9 @@ the check.
 - **No cap on the number of questions.** A question that can't change the outcome isn't asked;
   any other one is.
 - **A change that fits in one sentence needs no plan**, Claude Code's own test.
+- **Questions that aren't about code get their own rule**, `pressure-test-before-answering`,
+  rather than a wider coding rule: plan mode and EARS hold for code only. Its Tier 1 still looks
+  the facts up, since "just answer" read as leave to answer from memory.
 
 What it rests on:
 
