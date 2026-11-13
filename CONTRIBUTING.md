@@ -22,6 +22,25 @@ through [SECURITY.md](SECURITY.md), never a public issue.
 4. **Test a hook's behaviour, not its code.** Each hook has a test file in `test/` that runs it on
    payloads shaped like the harness's documented or captured input.
 
+## Evals
+
+`evals/` holds cases that measure whether a rule changes what Claude Code does: each case runs
+three times with the plugin and three times without it, and the report shows the difference. Every
+run is a real model call on your own account, so the suite runs by hand, never in CI:
+
+```bash
+claude plugin eval . --scaffold
+```
+
+It needs Claude Code 2.1.269 or later and, if git is installed, git 2.31 or later. `--scaffold`
+runs each case's `fixture.sh` as you, outside the agent's sandbox, to build the files the case works
+on: read the `fixture.sh` files in a pull request before running its cases. To try one case once
+while changing it: `claude plugin eval . --scaffold --case <name> --runs 1 --ablation none`. That
+mode also scores the graders that only show whether a skill fired, so a case can score under 1.00
+even when Claude did what it should.
+A change to a rule is worth a run before and after; [Claude Code's eval
+docs](https://code.claude.com/docs/en/plugin-evals) explain the cases and graders.
+
 Why the repo is built this way: [docs/design.md](docs/design.md).
 
 ## Licence

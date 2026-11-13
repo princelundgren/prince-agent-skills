@@ -8,6 +8,8 @@ nothing about the maintainer's own machines, accounts, private repositories or e
   hand: CI fails when they differ from what the generator writes.
 - **Test:** one file with `node --test test/<name>.test.mjs`, all of them with `npm test`. A bare
   `node --test test/` fails.
+- **Evals:** `claude plugin eval . --scaffold`, run by a person, never by CI or unasked: every run
+  is a model call on the runner's account (`CONTRIBUTING.md`).
 - **Validate the plugin:** `claude plugin validate .`. Its warnings for the missing `version`
   (`docs/design.md`) and icon are expected.
 - **Hooks are CommonJS** (`require`), run by harnesses as plain `node <script>`. A `"type":
