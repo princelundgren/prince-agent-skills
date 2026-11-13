@@ -19,3 +19,5 @@ nothing about the maintainer's own machines, accounts, private repositories or e
 - **A file that names another rule or skill** names one published here, or a tool the user may not
   have, said as optional.
 - **CI** runs on GitHub-hosted runners only, never with `pull_request_target` or `workflow_run`.
+- **Claude reviews each pull request** opened from this repository: read its `## Claude review of
+  <sha>` summary, and fix or answer each 🔴 and 🟡 before the maintainer merges.
