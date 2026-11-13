@@ -114,7 +114,9 @@ its request: a step of your own, such as keeping a notes store true. In Claude C
 - **Kiro over ACP** (inside Zed, for one) loads no hooks; the steering and agents still work.
 - **Qwen Code subagents** may not get the rules: whether an extension's `QWEN.md` reaches them is
   unverified.
-- **`fact-check-nudge` costs a turn** each time it asks, and it doesn't run under Qwen Code.
+- **`fact-check-nudge` costs a turn** each time it asks, and its reply repeats the answer, so an
+  interactive session shows it twice. Kiro asks after every turn, so it shows every answer that
+  isn't skipped twice. It doesn't run under Qwen Code.
 - **Hooks need `node`** on `PATH`.
 
 ## Works well with
