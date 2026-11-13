@@ -36,6 +36,13 @@ test("a long final message continues the turn with the fact-check request", (t) 
   assert.match(output.additionalContext, /^Fact-check your last message/);
 });
 
+test("the request asks for the whole answer again, since a headless session returns only the reply", (t) => {
+  const { stop } = setup(t);
+  const request = JSON.parse(stop(stopPayload(LONG_MESSAGE)).stdout).hookSpecificOutput.additionalContext;
+  assert.match(request, /give your last message again in full/);
+  assert.doesNotMatch(request, /Don't repeat/);
+});
+
 test("a request is logged with its session and the message's length, never its text", (t) => {
   const { stop, rows, log } = setup(t);
   stop(stopPayload(LONG_MESSAGE));

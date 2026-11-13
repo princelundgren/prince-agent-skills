@@ -45,7 +45,12 @@ a local folder, loads it only on keywords in a prompt, and a power holds no hook
 - **`fact-check-nudge` asks once per turn, and its log decides.** `stop_hook_active` can't mean
   this hook asked, since another plugin's `Stop` hook can set it. The log records each request and
   its reply, so one request gets one reply however many tool calls the check makes, and a reader
-  can see how often a check corrected anything. It logs a message's length, never its text.
+  can see how often a check corrected anything. It logs the checked message's length, never its
+  text, and the reply's first 4000 characters, which repeat the answer.
+- **The check's reply repeats the whole answer**, in Claude Code and in Kiro. A headless session
+  (`claude -p`) prints the turn's result, its last message, and no hook input tells a headless
+  session from an interactive one, so a reply that left the answer out would replace it. An
+  interactive session shows the answer twice.
 - **`fact-check-nudge` is off under Qwen Code**, where it is untested; each check costs a turn.
 - **Kiro's `Stop` payload holds no message**, so `kiro-fact-check-nudge` asks every turn and lets
   the session skip a turn with nothing to check, and nothing for the extra file's step to do.

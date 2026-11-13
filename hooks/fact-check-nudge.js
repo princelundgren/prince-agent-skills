@@ -19,10 +19,11 @@ const PENDING_SCAN_BYTES = 256 * 1024; // the log only grows; a request and its 
 const CHECK = "Fact-check your last message before ending the turn: take each claim about how " +
   "something behaves or what you did. If no output in this session shows it, check it now with " +
   "your tools (docs, search, a command).";
-const REPLY_SHAPE = "Your reply becomes the turn's last message, so it must stand alone. Start " +
-  "with the corrections and what showed them, or one line saying everything holds. Then, if your " +
-  "last message had sections the user must act on (open questions, decisions, next steps), " +
-  "repeat them with any correction applied. Don't repeat the rest of the message.";
+// In full every time: no hook input says whether the session is headless.
+const REPLY_SHAPE = "Your reply becomes the turn's last message, and in a headless session the " +
+  "only one returned, so it must stand alone. Start with the corrections and what showed them, " +
+  "or one line saying everything holds. Then give your last message again in full, with any " +
+  "correction applied.";
 
 function logPath() {
   const dir = process.env.CLAUDE_PLUGIN_DATA || path.join(os.homedir(), ".claude", "logs");
